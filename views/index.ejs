@@ -1,39 +1,17 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>to do list</title>
-</head>
-<body>
-    <div class="box">
-        <% for(var i=0;i< tasks.length;i++){ %>
-            <div class="item">
-                <input type="checkbox" name="checkbox" id="check">
-                <p> <%= tasks[i]%></p>
-            </div>
-        <% } %>
-        <form class="item" action="/" method="post">
-            <input type="text" name="task" placeholder="input your task">
-            <button type="submit">+</button>
-        </form>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
     <link rel="stylesheet" href="css/styles.css">
     <title>To-Do List</title>
 </head>
 <body>
     <div class="header">
         <h1>TO DO LIST</h1>
-        <h2>Make Your Task orgainsed</h2>
+        <h2>Make Your Tasks Organized</h2>
+        <div id="toast" class="toast"></div>
     </div>
     <div class="box">
         <% for(var i=0; i < tasks.length; i++){ %>
@@ -49,22 +27,22 @@
             <button type="submit">Add</button>
         </form>
     </div>
-    
-</body>
-<script>
-    // Get all checkboxes by class name
-    const checkboxes = document.querySelectorAll('.task-checkbox');
+    <script>
+        const checkboxes = document.querySelectorAll('.task-checkbox');
+        const toast = document.getElementById('toast');
 
-    // Add click event listeners to checkboxes
-    checkboxes.forEach((checkbox, index) => {
-        checkbox.addEventListener('click', () => {
-            if (checkbox.checked) {
-                // Checkbox is checked, you can perform actions here
-                alert(`Task ${index + 1} is completed!`);
-            } else {
-                // Checkbox is unchecked, you can perform actions here
-            }
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('click', () => {
+                if (checkbox.checked) {
+                    toast.innerText = `Task ${index + 1} is completed!`;
+                    toast.style.display = 'block';
+                    setTimeout(() => {
+                        toast.style.display = 'none';
+                    }, 3000);
+                } else {
+                }
+            });
         });
-    });
-</script>
+    </script>
+</body>
 </html>
